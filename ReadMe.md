@@ -19,7 +19,8 @@ WebGL: OpenGL ES 2.0기반의 3차원 그래픽스 API를 위한 크로스 플�
 Three-drei는 Three.js에 대한 지식을 요구하지 않으므로, Three.js와 React-three-fiber를 모두 사용하지 않고도 Three.js를 사용하여 3D 그래픽을 만들 수 있다.
 
 ## Three.js 환경
-Three.js에선 3D 개체를 띄우기 위한 3가지 기본 요소 Canvas, Scene, Camera가 존재한다. <br/>
+Three.js에선 3D 개체를 띄우기 위한 3가지 기본 요소 Canvas, Scene, Camera가 존재한다.
+ <br/>
 ![image](https://user-images.githubusercontent.com/110171787/220534567-57c92a9a-d06b-49b0-826e-119438ac7413.png)
 <br/> 
 <br />
