@@ -199,3 +199,23 @@ useEffect Hoook 내에 load 구문을 넣어준다. <br/>
 <br/>
 <img src="https://user-images.githubusercontent.com/110171787/220562213-ca9dce55-1773-471a-9719-cd213ce5b71c.png" width="80%" />
 위와 같이 이미지가 로드되었다면 이제 마우스로 확대, 축소, 회전이 가능한 **OrbitControls** 을 할 차례이다.
+
+```js
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
+...
+useEffect(() =>{
+const controls = new OrbitControls(camera, canvas.current);
+      controls.rotateSpeed = 0.5; // 마우스로 카메라를 회전시킬 속도입니다. 기본값(Float)은 1입니다.
+      controls.zoomSpeed = 1.2; // 마우스 휠로 카메라를 줌 시키는 속도 입니다. 기본값(Float)은 1입니다.
+      controls.panSpeed = 0.8; // 패닝 속도 입니다. 기본값(Float)은 1입니다.
+      controls.minDistance = 5; // 마우스 휠로 카메라 거리 조작시 최소 값. 기본값(Float)은 0 입니다.
+      controls.maxDistance = 500; // 마우스 휠로 카메라 거리 조작시 최대 값. 기본값(Float)은 무제한 입니다.
+      
+       const animate = () => {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      };
+```
+만 넣어주면 마우스로 회전, 이동이 가능한 객체가 된다.
