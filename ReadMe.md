@@ -13,3 +13,9 @@ npm install three @react-three/fiber @react-three/drei
 - **three/drei**: Three.js의 유용한 컴포넌트 및 기능 라이브러리이다. <br />
 반응형 레이아웃, 카메라 및 조명 구성 요소, 물리 엔진 및 파티클 시스템과 같은 기능을 제공한다.<br/>
 Three-drei는 Three.js에 대한 지식을 요구하지 않으므로, Three.js와 React-three-fiber를 모두 사용하지 않고도 Three.js를 사용하여 3D 그래픽을 만들 수 있다.
+
+##Three.js 환경##
+**div element**에 appendchild하여 Canvas화하기 위해 useRef Hook을 사용하여 최상단 div el을 ref로 잇는다.
+```javascript
+const canvas = useRef(null);
+```
