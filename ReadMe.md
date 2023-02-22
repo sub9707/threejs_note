@@ -130,8 +130,37 @@ useEffect(() => {
  <img src="https://user-images.githubusercontent.com/110171787/220545354-ad7bcb87-b84b-41dd-a1b3-c88f835d475a.png" style="width: 80%" />
  
  
+ ## 텍스트를 띄워보자
+ **1. DOM + CSS을 이용하는 방식**
+ - 이 방식을 사용하기 위해서는 일반적으로 사용하되, z-index값에서 우위를 주어 모델 상위로 올라오도록 해야한다.
+ <br/>
  
+ **2. <a href="https://threejs.org/docs/index.html#examples/en/renderers/CSS2DRenderer">CSS2DRenderer </a> 또는 <a href="https://threejs.org/docs/index.html#examples/en/renderers/CSS3DRenderer">CSS3DRenderer</a> 사용**
+ <br/>
+ - 해당 방법을 사용하면 고품질의 텍스트를 조금 더 모델과 어우러진 동적 형태로 렌더할 수 있게 된다.
+ <br/>
  
- 
- 
+ **3. 텍스트 자체를 이미지화 시켜서 띄워버리는 방식**
+ - 말 그대로다.
+ ```js
+ const texture = new THREE.TextureLoader().load( "textures/water.jpg" );
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+texture.repeat.set( 4, 4 );
+```
+*이 외에도 방법은 많다.*
+
+## (중요) ✨모델을 로드하는 방법✨
+3D 모델 공유 웹들에서 파일을 내려받을 때 **glTF**(GL 전송 형식)을 사용하는 것이 권장된다.<br/>
+**GLB** 및 **.GLTF** 버전 또한 지원된다. <br/>
+gltf 파일은 3D 모델 정보를 JSON 형식으로 저장하는 3D 파일 형식으로, 전송이 편하고 로드가 빠르다는 장점이 있다.<br/>
+또 노드 계층, 재료, 카메라에 대한 정보는 물론 메시, 애니메이션 및 기타 구성에 대한 설명들이 *JSON* 형식으로 포함돼있다.
+
+### 로드 방법
+```js
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+```
+GLTF 로더를 사용할 것이기에 해당 스크립트를 임포트해준다.
+
+
 
