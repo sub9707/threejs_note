@@ -198,7 +198,7 @@ useEffect Hoook 내에 load 구문을 넣어준다. <br/>
 
 <br/>
 <img src="https://user-images.githubusercontent.com/110171787/220562213-ca9dce55-1773-471a-9719-cd213ce5b71c.png" width="80%" />
-위와 같이 이미지가 로드되었다면 이제 마우스로 확대, 축소, 회전이 가능한 **OrbitControls** 을 할 차례이다.
+위와 같이 이미지가 로드되었다면 이제 마우스로 확대, 축소, 회전이 가능한 OrbitControls을 할 차례이다.
 
 ```js
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
