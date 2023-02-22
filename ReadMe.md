@@ -126,6 +126,12 @@ useEffect(() => {
     }
   }, [canvas, renderer, scene, camera, material]);
  ```
- animate()가 실행되면 다음과 같이 선이 그려지게 된다. <br/>
- ![image](https://user-images.githubusercontent.com/110171787/220545354-ad7bcb87-b84b-41dd-a1b3-c88f835d475a.png)
+ animate()가 실행되면 다음과 같이 위를 바라보는 선이 그려지게 된다. <br/>
+ <img src="https://user-images.githubusercontent.com/110171787/220545354-ad7bcb87-b84b-41dd-a1b3-c88f835d475a.png" style="width: 80%" />
+ 
+ 
+ 
+ 
+ 
+ 
 
