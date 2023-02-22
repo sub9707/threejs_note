@@ -162,5 +162,24 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 ```
 GLTF 로더를 사용할 것이기에 해당 스크립트를 임포트해준다.
 
+```js
+const loader = new GLTFLoader();
+
+      loader.load(
+        "../src/assets/gltf/book.glb",
+        function (gltf) {
+          gltf.scene.position.set(0, 0, 0);
+          gltf.scene.scale.set(100, 100, 100);
+          scene.add(gltf.scene);
+        },
+        undefined,
+        function (error) {
+          console.error(error);
+        }
+      );
+```
+useEffect Hoook 내에 load 구문을 넣어준다. <br/>
+상대 경로를 통해 glb파일을 로드하고, position과 scale을 세팅해 scene에 추가해준다.
+
 
 
