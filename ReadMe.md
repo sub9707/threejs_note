@@ -21,6 +21,7 @@ Three-drei는 Three.js에 대한 지식을 요구하지 않으므로, Three.js�
 ## Three.js 환경
 Three.js에선 3D 개체를 띄우기 위한 3가지 기본 요소 Canvas, Scene, Camera가 존재한다.
  <br/>
+  <br/>
 ![image](https://user-images.githubusercontent.com/110171787/220534567-57c92a9a-d06b-49b0-826e-119438ac7413.png)
 <br/> 
 <br />
