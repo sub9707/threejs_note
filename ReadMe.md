@@ -219,3 +219,5 @@ const controls = new OrbitControls(camera, canvas.current);
       };
 ```
 만 넣어주면 마우스로 회전, 이동이 가능한 객체가 된다.
+<img src="https://user-images.githubusercontent.com/110171787/220569343-2442c652-9cef-40d9-8b05-ac0437b88597.png" width:"80%"/>
+
