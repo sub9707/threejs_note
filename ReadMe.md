@@ -85,6 +85,45 @@ const scene = new THREE.Scene();
 ```js
 const material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
 ```
+속성을 지정한 후 정점의 정보를 담은 Geometry를 정의한다.
+```js
+const points = [];
+points.push( new THREE.Vector3( - 10, 0, 0 ) );
+points.push( new THREE.Vector3( 0, 10, 0 ) );
+points.push( new THREE.Vector3( 10, 0, 0 ) );
 
+const geometry = new THREE.BufferGeometry().setFromPoints( points );
+```
 
+**이 때 마운트되는 순서가 중요하다. 이를 알지못해 렌더링을 시키지 못했음**
+렌더러가 만들어지고, 캔버스가 생성된 이후 정점과 같은 요소들이 생성되도록 순서를 맞춰주어야한다.
+
+```js
+useEffect(() => {
+    if (canvas.current) {
+      renderer.setSize(canvas.current.clientWidth, canvas.current.clientHeight);
+      canvas.current.appendChild(renderer.domElement);
+
+      const points = [];
+      points.push(new THREE.Vector3(-10, 0, 0));
+      points.push(new THREE.Vector3(0, 10, 0));
+      points.push(new THREE.Vector3(10, 0, 0));
+
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+
+      const line = new THREE.Line(geometry, material);
+
+      scene.add(line);
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      };
+
+      animate();
+    }
+  }, [canvas, renderer, scene, camera, material]);
+ ```
+ animate()가 실행되면 다음과 같이 선이 그려지게 된다. </br>
+ ![image](https://user-images.githubusercontent.com/110171787/220545354-ad7bcb87-b84b-41dd-a1b3-c88f835d475a.png)
 
