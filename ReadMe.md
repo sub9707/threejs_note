@@ -181,5 +181,21 @@ const loader = new GLTFLoader();
 useEffect Hoook 내에 load 구문을 넣어준다. <br/>
 상대 경로를 통해 glb파일을 로드하고, position과 scale을 세팅해 scene에 추가해준다.
 
+<br />
+모종의 이유로 오브젝트가 보이지 않을 수 있는데 그럴 땐,<br /><br />
 
+**1. 카메라의 위치를 세팅한다.**<br />
+**2. light를 추가하거나 이미 있다면 강도, 포지션을 재설정해준다.**<br />
 
+```js
+  const light = new THREE.PointLight(0xffffff, 2, 100);
+  light.position.set(0, 0, 50);
+  scene.add(light);
+```
+해당 코드로 광원을 추가할 수 있다. <br />
+3. **배경이 검은색**일 수도 있고, **오브젝트의 색, 크기(너무 작거나 너무 크거나)** 가 문제일 수도 있다.<br />
+4. 콘솔창에 load가 되지 않음을 확인하면 **gltf 파일 경로**를 확인해주자.<br />
+
+<br/>
+<img src="https://user-images.githubusercontent.com/110171787/220562213-ca9dce55-1773-471a-9719-cd213ce5b71c.png" width="80%" />
+위와 같이 이미지가 로드되었다면 이제 마우스로 확대, 축소, 회전이 가능한 **OrbitControls** 을 할 차례이다.
