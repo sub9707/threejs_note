@@ -1,4 +1,4 @@
-# Three.js & r3f(react-three-fiber) 학습
+# Three.js & r3f(react-three-fiber) 학습 정리
 
 ## 설치 ##
 **개발환경은 react-vite 혹은 react-ts-vite**
