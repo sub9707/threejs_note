@@ -23,7 +23,7 @@ Three.js에선 3D 개체를 띄우기 위한 3가지 기본 요소 Canvas, Scene
  <br/>
   <br/>
 ![image](https://user-images.githubusercontent.com/110171787/220534567-57c92a9a-d06b-49b0-826e-119438ac7413.png)
-<br/> 
+<br/>     
 <br />
 간단하게, 모델과 오브젝트로 구성된 Scene을 Camera로 담아, Renderer로 Canvas HTML에 띄우는 순서이다.
 
