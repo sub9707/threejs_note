@@ -8,7 +8,7 @@ npm install three @react-three/fiber @react-three/drei
 ### 설치항목 설명  
 세 라이브러리 모두 리액트 웹앱 상에서 JAVASCRIPT를 활용해 3D 그래픽을 생성하기 위한 라이브러리이다.
 - **three.js**: WebGL을 사용하여 3D 모델링, 애니메이션, 라이팅, 텍스처 및 기타 기능을 제공한다.
-```
+``` 
 WebGL: OpenGL ES 2.0기반의 3차원 그래픽스 API를 위한 크로스 플랫폼 웹 표준으로써, 
 웹 브라우저에서 별도의 플러그인을 설치하지 않고도 3차원 그래픽을 표현할 수 있도록 해준다.
 ```
