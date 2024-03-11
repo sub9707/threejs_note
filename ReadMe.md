@@ -194,7 +194,10 @@ const cube = new THREE.Mesh(geometry, material);
 그 다음로 알아야할 요소가 `Mesh`인데, mesh는 우리말로 그물과 같은 망을 의미한다.<br/>
 망처럼 다각형들을 잇고 이어 집합을 이루는데 이 집합이 객체의 외관을 그리게된다.<br/>
 mesh 속성은 기하와 여기에 적용되는 material을 지니는 객체가 되며, Scene에 넣어서 움직일 수 있도록 한다.<br/><br/>
-![alt text](image-1.png)
+
+<p align="center">
+  <img src="image-1.png" alt="mesh">
+</p>
 
 > 점과 점이 이어져 다각형(Polygon)을 이루고, 이 다각형이 이어져 망(Mesh)을 이룬다.
 
