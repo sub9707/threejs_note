@@ -13,8 +13,6 @@
 
 ## 설치
 
-**개발환경은 react-vite 혹은 react-ts-vite**
-
 ```bash
 # three.js
 npm install --save three
