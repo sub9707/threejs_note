@@ -7,7 +7,7 @@
 3. [기본 요소 구현](#기본-요소-구현)
 4. [예제 - 정육면체 생성](#예제---정육면체-생성)
 
-[외부] <a href="./ThreeJS_on_ReactJS.md">ReactJS에서 theeJS 구현하기 </a><br/>
+[외부] <a href="./ThreeJS_on_ReactJS.md">ReactJS에서 ThreeJS 구현하기 </a><br/>
 [외부] <a href="./ThreeJS_Fiber.md">threeJS 라이브러리 Three/fiber </a><br/>
 [외부] <a href="./ThreeJS_Drei.md">threeJS 라이브러리 Three/Drei </a><br/>
 
