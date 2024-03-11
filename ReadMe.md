@@ -1,4 +1,15 @@
-# Three.js & r3f(react-three-fiber) 학습 정리
+# Three.js 정리
+
+## 목차
+
+1. [기본 환경 설치](#설치)
+2. [THREE.js 기본 요소](#threejs-기본-구성요소)
+3. [기본 요소 구현](#기본-요소-구현)
+4. [예제 - 정육면체 생성](#예제---정육면체-생성)
+
+[외부] <a href="./ThreeJS_on_ReactJS.md">ReactJS에서 theeJS 구현하기 </a><br/>
+[외부] <a href="./ThreeJS_Fiber.md">threeJS 라이브러리 Three/fiber </a><br/>
+[외부] <a href="./ThreeJS_Drei.md">threeJS 라이브러리 Three/Drei </a><br/>
 
 ## 설치
 
@@ -64,7 +75,7 @@ Scene과 Camera를 구성했다면, 앱에 추가해야하는데 다른 웹 컴�
 <U>**_이 3가지 요소가 threeJS가 동작하는 필수 요소와 같다._**</U>
 <br/><br/>
 
-# 기본 요소 설치
+# 기본 요소 구현
 
 ### Scene 생성
 
