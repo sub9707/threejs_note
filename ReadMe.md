@@ -222,7 +222,8 @@ mesh 속성은 기하와 여기에 적용되는 material을 지니는 객체가 
   <img src="./Images/image-1.png" alt="mesh">
 </p>
 
-> 점과 점이 이어져 다각형(Polygon)을 이루고, 이 다각형이 이어져 망(Mesh)을 이룬다.
+> 점과 점이 이어져 다각형(Polygon)을 이루고, 이 다각형이 이어져 망(Mesh)을 이룬다. <br/>
+> 그림 출처 - 위키백과 (Polygon, Mesh)
 
 <br/>
 이제 이 완성된 개체를 Scene에 추가해준 뒤 카메라의 위치를 수정해주었다.
@@ -310,6 +311,8 @@ camera.position.set(0, 0, 100);
 <p align="center">
   <img src="./Images/XYZ.png" alt="Cube">
 </p>
+
+> 그림 출처 - <a href="https://eztutorblog.wordpress.com/2016/10/26/three-js-9-skycube/" target="_blank">THREE.JS NOTES FOR BEGINNER</a><br/>
 
 참고로, 카메라와 개체를 이동시킬 때 `xyz축(axis)`의 이해가 필요하다.<br/>
 수학적인 좌표 개념과 다르게, threeJS과 같은 그래픽 툴의 축 개념은 다르다.<br/>
