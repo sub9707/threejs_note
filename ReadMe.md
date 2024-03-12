@@ -1,11 +1,15 @@
 # Three.js 정리
 
+> 김승섭 (sub9707)에 의해 작성
+
 ## 목차
 
 1. [기본 환경 설치](#설치)
 2. [THREE.js 기본 요소](#threejs-기본-구성요소)
 3. [기본 요소 구현](#기본-요소-구현)
-4. [예제 - 정육면체 생성](#예제---정육면체-생성)
+4. [WebGL 지원 확인](#)
+5. [예제1 - 정육면체 생성](#예제1---정육면체-생성)
+6. [예제2 - 선그리기](#예제2---점을-이용해-선-그리기)
 
 [외부] <a href="./ThreeJS_on_ReactJS.md">ReactJS에서 ThreeJS 구현하기 </a><br/>
 [외부] <a href="./ThreeJS_Fiber.md">threeJS 라이브러리 Three/fiber </a><br/>
@@ -66,7 +70,7 @@ Scene과 Camera를 구성했다면, 앱에 추가해야하는데 다른 웹 컴�
 <br/><br/>
 부족한 그림 솜씨로 위 요소를 비유하여 표현하자면 아래와 같다.
 
-![alt text](image.png)
+![alt text](./Images/image.png)
 
 > 극장 내부에서 직접 볼 수 없는 Renderer라는 극장은 Scene이라는 연극들을 상영한다. <br/>이 연극은 외부의 화면으로만 관람이 가능하다.<br/> 각 상영관(Scene)들은 다수의 카메라와 배우들(개체), 조명 등으로 구성된다. <br/>지정된 Camera에 따라 외부의 관람객들은 연극을 관람할 수 있다.
 
@@ -131,7 +135,28 @@ document.body.appendChild(renderer.domElement);
 화면 크기는 유지한채로 화질만 낮추려면, `setSize`의 세번째 인자로 false를 전달하면 절반의 해상도로 출력된다.
 <br/><br/>
 
-## 예제 - 정육면체 생성
+# WebGL 지원 확인
+
+몇몇 기기나 브라우저는 WebGL을 지원하지 않는 환경도 있다.<br/>
+아래 메서드를 활용해 WebGL 지원을 감지하고 유저에게 메시지를 전달할 수 있다.
+
+```js
+import WebGL from "three/addons/capabilities/WebGL.js";
+
+if (WebGL.isWebGLAvailable()) {
+  // webgl이 지원 가능하다면 해당 블록에서 함수나 변수 초기화 셋팅
+  // React에서는 컴포넌트 render 이전에 return 시키면 된다.
+  animate();
+} else {
+  // 경고 문구를 추가함.
+  const warning = WebGL.getWebGLErrorMessage();
+  document.getElementById("container").appendChild(warning);
+}
+```
+
+<br/>
+
+# 예제1 - 정육면체 생성
 
 우선 통 코드부터 살펴보자.<br/>
 아래 코드는 ThreeJS를 활용해 회전하는 정육면체 하나를 렌더링하기 위한 최소 코드이다.
@@ -194,7 +219,7 @@ const cube = new THREE.Mesh(geometry, material);
 mesh 속성은 기하와 여기에 적용되는 material을 지니는 객체가 되며, Scene에 넣어서 움직일 수 있도록 한다.<br/><br/>
 
 <p align="center">
-  <img src="image-1.png" alt="mesh">
+  <img src="./Images/image-1.png" alt="mesh">
 </p>
 
 > 점과 점이 이어져 다각형(Polygon)을 이루고, 이 다각형이 이어져 망(Mesh)을 이룬다.
@@ -228,5 +253,73 @@ npx vite
 ```
 
 <p align="center">
-  <img src="Cube.gif" alt="Cube">
+  <img src="./Images/Cube.gif" alt="Cube">
 </p>
+<br/>
+
+# 예제2 - 점을 이용해 선 그리기
+
+점을 이으면 선이 되고, 그 선들을 이으면 다각형이 된다.<br/>
+그 다각형들이 모여 Mesh를 이루어 와이어프레임이 형성되는데,<br/>
+이번에는 다각형의 부분인 선들을 그려보자.<br/>
+
+우선 가장 기초적인 Scene, Camera, Renderer의 초기화 및 설정은 위의 내용과 동일하기에 생략한다.<br/>
+
+위의 정육면체와 같이, 도형(Geometry)과 재질(Material)이 필요하다.
+
+```js
+const material = new THREE.LineBasicMaterial({ color: 0x0000ff });
+```
+
+THREE.js에서 제공되는 `LineBasicMaterial`을 통해 선분 Material을 생성한다.<br/>
+<br/>
+이후 도형(Geometry)을 선으로 생성하기 위해서는 점(Point)들이 필요한데, 이 점들을 THREE 메서드를 통해 선으로 이을 수 있다.
+
+```js
+const points = [];
+points.push(new THREE.Vector3(-10, 0, 0));
+points.push(new THREE.Vector3(0, 10, 0));
+points.push(new THREE.Vector3(10, 0, 0));
+
+const geometry = new THREE.BufferGeometry().setFromPoints(points);
+```
+
+각 점들을 잇는 방식은 배열의 연속된 순서에 따라 선분이 연결되며, 떨어진 요소에 대해서는 연결되지 않는다는 특징을 가진다.
+
+```js
+const line = new THREE.Line(geometry, material);
+
+scene.add(line);
+renderer.render(scene, camera);
+```
+
+생성자로 도형과 재질을 인자로 전달하면 선분을 생성할 수 있다.
+
+```js
+camera.position.set(0, 0, 100);
+```
+
+현재 카메라 위치에서는 선분이 보이지 않기 때문에 카메라 위치도 조절해준다.
+
+<p align="center">
+  <img src="./Images/Line.png" alt="Cube">
+</p>
+
+### XYZ 축?
+
+<p align="center">
+  <img src="./Images/XYZ.png" alt="Cube">
+</p>
+
+참고로, 카메라와 개체를 이동시킬 때 `xyz축(axis)`의 이해가 필요하다.<br/>
+수학적인 좌표 개념과 다르게, threeJS과 같은 그래픽 툴의 축 개념은 다르다.<br/>
+수평 수직을 x축과 y축이 값을 가지고, 화면쪽 거리 크기(화면의 깊이)를 z축이 가진다.<br/>
+CSS의 속성인 `Z-index`를 떠올려보자.<br/>
+화면을 기준으로 개체들의 높낮이 순위가 결정된다.<br/>
+보는 시점, 카메라 위치에 따라 우리에게 보이는 축이 달라지지만, 개체의 상대적 위치와 방향을 정확히 파악하기 위해서는 XYZ축을 이해하는 것이 중요하다.
+
+<p align="center">
+  <img src="./Images/XYZ2.png" alt="Cube">
+</p>
+
+> 만약 카메라 위치 설정을 하지 않는다면 선과 같은 z축에 위치해 도형이 보이지 않게된다.
