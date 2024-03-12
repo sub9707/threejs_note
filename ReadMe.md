@@ -11,7 +11,9 @@
 5. [예제1 - 정육면체 생성](#예제1---정육면체-생성)
 6. [예제2 - 선그리기](#예제2---점을-이용해-선-그리기)
 7. [3D 텍스트를 출력하는 방법](#텍스트-출력)
+8. [3D 모델파일 로드하기](#3d-모델파일-로드하기)
 
+[외부] <a href="./threejs_Camera.md">ThreeJS 핵심 요소 1. Camera </a><br/>
 [외부] <a href="./ThreeJS_on_ReactJS.md">ReactJS에서 ThreeJS 구현하기 </a><br/>
 [외부] <a href="./ThreeJS_Fiber.md">threeJS 라이브러리 Three/fiber </a><br/>
 [외부] <a href="./ThreeJS_Drei.md">threeJS 라이브러리 Three/Drei </a><br/>
