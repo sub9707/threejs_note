@@ -10,6 +10,7 @@
 4. [WebGL 지원 확인](#)
 5. [예제1 - 정육면체 생성](#예제1---정육면체-생성)
 6. [예제2 - 선그리기](#예제2---점을-이용해-선-그리기)
+7. [3D 텍스트를 출력하는 방법](#텍스트-출력)
 
 [외부] <a href="./ThreeJS_on_ReactJS.md">ReactJS에서 ThreeJS 구현하기 </a><br/>
 [외부] <a href="./ThreeJS_Fiber.md">threeJS 라이브러리 Three/fiber </a><br/>
@@ -32,6 +33,7 @@ npm install --save-dev vite
 Three.js는 웹에서 3D 그래픽을 만들기 위한 JavaScript 라이브러리이다.<br/>
 내부적으로 `WebGL`을 기반으로 하며, WebGL은 웹 브라우저에서 하드웨어 가속 3D 그래픽을 그리기 위한 표준이다.<br/>
 Three.js를 사용하면 3D 모델을 만들고 렌더링하며, 빛과 재질을 조작하여 현실적인 3D 경험을 웹에 구현할 수 있다.<br/>
+또한 Three.js는 웹 기반이기 때문에, 브라우저와 DOM API에 의존한다. 따라서 NodeJS 환경에서는 항상 존재할 수 없다.
 
 <U>해당 문서는 아래 공식 DOCS를 보고 작성되었습니다.<br/></U>
 <a href="https://threejs.org/docs/" target="_blank">THREE.js DOCS</a>
@@ -46,7 +48,7 @@ WebGL: OpenGL ES 2.0기반의 3차원 그래픽스 API를 위한 크로스 플�
 
 # Three.js 기본 구성요소
 
-theeJS에는 가장 중요한 세가지 개념이 존재한다.
+ThreeJS에는 가장 중요한 세가지 개념이 존재한다.
 
 ### Scene (장면)
 
@@ -222,7 +224,7 @@ mesh 속성은 기하와 여기에 적용되는 material을 지니는 객체가 
   <img src="./Images/image-1.png" alt="mesh">
 </p>
 
-> 점과 점이 이어져 다각형(Polygon)을 이루고, 이 다각형이 이어져 망(Mesh)을 이룬다. <br/>
+> 점과 점이 이어져 면과 다각형(Polygon)을 이루고, 이 다각형이 이어져 망(Mesh)을 이룬다. <br/>
 > 그림 출처 - 위키백과 (Polygon, Mesh)
 
 <br/>
@@ -326,3 +328,101 @@ CSS의 속성인 `Z-index`를 떠올려보자.<br/>
 </p>
 
 > 만약 카메라 위치 설정을 하지 않는다면 선과 같은 z축에 위치해 도형이 보이지 않게된다.
+
+<br/>
+
+# 텍스트 출력
+
+3D 환경에서 텍스트를 출력해야할 때, 텍스트를 띄우는 방법에 대해 Three.JS 공식 문서는 아래 7가지 방식을 제안한다.
+
+## 1. DOM + CSS
+
+다른 HTML과 같이 텍스트를 포함한 요소를 추가하는 방식이다.<br/>
+가장 쉽고 빠른 방식이며 CSS를 통해 z-index의 위치나 스타일을 지정할 수 있다.<br/>
+
+```js
+<div id="texts">Text Example</div>
+
+#texts {
+	position: absolute;
+	width: 100%;
+	z-index: 100;
+}
+```
+
+## 2. CSS2DRenderer, CSS3DRenderer 사용
+
+이 렌더러를 사용하면 three.js Scene에 고품질의 텍스트를 DOM 요소에 추가할 수 있다.<br/>
+1번과 비슷하지만, Scene에 더 동적이고 탄탄하게 통합될 수 있다는 장점을 가진다.<br/>
+`CSS3DRenderer`는 CSS3의 `transfrom` 속성을 활용해 DOM요소에 3D 효과를 내는데 사용하는 렌더러다. <br/>캔버스 요소 없이 3D효과를 낼 때 사용하는데, three.js의 material이라던가, geometry를 활용하지 못한다는 한계점이 있다.
+
+## 3. 3D 툴로 3D 모델로 만든 후 three.js에 로드
+
+여러 그래픽 툴로 3d object를 생성한 후 모델로써 활용하는 방식이다.<br/>
+여러 텍스트가 필요하거나 동적으로 변하는 텍스트의 경우 불편한 방식일 듯 하다.<br/>
+
+## 4. Procedure Text Geometry
+
+순수 three.js를 활용해 동적인 3D 텍스트 도형을 생성할 수 있다.
+
+```js
+import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
+new THREE.TextGeometry(text, parameters);
+
+loader.load("fonts/helvetiker_regular.typeface.json", function (font) {
+  const geometry = new TextGeometry("Hello three.js!", {
+    font: font, // font 셋팅
+    size: 80,
+    height: 5,
+    curveSegments: 12, //extrudeSettings
+    bevelEnabled: true,
+    bevelThickness: 10,
+    bevelSize: 8,
+    bevelOffset: 0,
+    bevelSegments: 5,
+  });
+});
+```
+
+`TextGeometry`는 단일 텍스트 형체 생성 클래스로, 텍스트 문자열과 폰트 설정, `ExtrudeGeometry` 설정(텍스쳐, 형태 등 외관 매핑)을 파라미터로 전달해 생성한다.
+<br/><br/>
+이외에도 비트맵 폰트, 캔버스, 외부 패키지를 활용한 방식도 있으니 <a href="https://threejs.org/docs/#manual/en/introduction/Creating-text" target="_blank">DOCS</a>를 참고하자.
+<br/><br/>
+
+# 3D 모델파일 로드하기
+
+3D 모델 파일은 각자의 목적에 따라 다양한 포맷으로 존재한다.<br/>
+그 가운데 ThreeJS는 많은 모델 파일을 로드하기 위한 로더들을 제공하며 우리는 이 중 적절한 포맷과 워크플로우에 맞는 로더를 선택할 수 있다. <br/>
+포맷 중 `glTF`와 `GLB` 포맷이 가장 잘 지원된다.<br/>
+glTF는 런타임 에셋 전달에 초점을 두기에 전송이 간편하고 로드 속도가 빠르다.<br/>
+포맷에는 다음과 같은 속성들을 포함한다.<br/>
+`meshes, materials, textures, skins, skeletons, morph targets, animations, lights, cameras`
+
+## 로드
+
+```js
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+```
+
+GLTFLoader를 포함한 소수의 로더는 threeJS에서 기본적으로 제공된다.<br/>
+이외의 로더는 따로 라이브러리에서 추가를 해야한다.
+
+```js
+const loader = new GLTFLoader();
+loader.load(
+  "path/to/model.glb",
+  function (gltf) {
+    scene.add(gltf.scene);
+  },
+  undefined, // 로딩 중 호출되는 xhr 함수
+  function (error) {
+    console.error(error);
+  }
+);
+```
+
+loader의 첫번째 인자로는 `resource URL`로 리소스의 위치를 명시한다.<br/>
+두번째 인자는 `리소스가 로드되면 호출될 함수`를 전달한다.<br/>
+여기서는 `모델 파일이 로드됐을때` Scene에 모델을 추가한다.<br/>
+세번째는 `loading 중 진행`할 함수로, 주로 로드 진행률을 표시할 때 사용한다.<br/>
+마지막으로는 `load 중 발생한 에러`를 핸들링하기 위한 함수를 전달한다.<br/>
