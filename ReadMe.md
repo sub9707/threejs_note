@@ -54,7 +54,7 @@ OPENGL ES2.0을 통해 도형이나 입체 개체를 렌더링하기 위해서�
 그렇기에 이 과정 자체를 이해하고 있지 않으면 제대로 활용하기 어렵다.<br/>
 
  <p align="center">
-  <img src="https://d3i71xaburhd42.cloudfront.net/a386920fa50818516b0d089254291076c4a8054b/21-Figure9-1.png"  width="50%" alt="OPENGL">
+  <img src="./Images/OPENGL.png"  width="70%" alt="OPENGL">
 </p>
 
 > [이미지 출처 - semanticscholar - Mobile Phone 3D Games with OpenGL ES 2.0](https://www.semanticscholar.org/paper/Mobile-Phone-3D-Games-with-OpenGL-ES-2.0/a386920fa50818516b0d089254291076c4a8054b/figure/8)
