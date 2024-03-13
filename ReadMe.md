@@ -7,7 +7,7 @@
 1. [기본 환경 설치](#설치)
 2. [THREE.js 기본 요소](#threejs-기본-구성요소)
 3. [기본 요소 구현](#기본-요소-구현)
-4. [WebGL 지원 확인](#)
+4. [WebGL 지원 확인](#webgl-지원-확인)
 5. [예제1 - 정육면체 생성](#예제1---정육면체-생성)
 6. [예제2 - 선그리기](#예제2---점을-이용해-선-그리기)
 7. [3D 텍스트를 출력하는 방법](#텍스트-출력)
@@ -36,7 +36,8 @@ npm install --save-dev vite
 Three.js는 웹에서 3D 그래픽을 만들기 위한 JavaScript 라이브러리이다.<br/>
 내부적으로 `WebGL`을 기반으로 하며, WebGL은 웹 브라우저에서 하드웨어 가속 3D 그래픽을 그리기 위한 표준이다.<br/>
 Three.js를 사용하면 3D 모델을 만들고 렌더링하며, 빛과 재질을 조작하여 현실적인 3D 경험을 웹에 구현할 수 있다.<br/>
-또한 Three.js는 웹 기반이기 때문에, 브라우저와 DOM API에 의존한다. 따라서 NodeJS 환경에서는 항상 존재할 수 없다.
+또한 Three.js는 웹 기반이기 때문에, 브라우저와 DOM API에 의존한다. <br/>
+따라서 NodeJS 환경에서는 항상 존재할 수 없다.
 
 <U>해당 문서는 아래 공식 DOCS를 보고 작성되었습니다.<br/></U>
 <a href="https://threejs.org/docs/" target="_blank">THREE.js DOCS</a>
@@ -46,6 +47,26 @@ WebGL: OpenGL ES 2.0기반의 3차원 그래픽스 API를 위한 크로스 플�
 웹 브라우저에서 별도의 플러그인을 설치하지 않고도 3차원 그래픽을 표현할 수 있도록 해준다.
 ```
 
+### Three.js의 장점이 무엇이 있을까
+
+우선 구현이 쉽고 학습 난이도와 진입장벽 또한 낮다.<br/>
+OPENGL ES2.0을 통해 도형이나 입체 개체를 렌더링하기 위해서는 아래와 같이 복잡한 파이프라인을 거친다. <br/>
+그렇기에 이 과정 자체를 이해하고 있지 않으면 제대로 활용하기 어렵다.<br/>
+
+ <p align="center">
+  <img src="https://d3i71xaburhd42.cloudfront.net/a386920fa50818516b0d089254291076c4a8054b/21-Figure9-1.png"  width="50%" alt="OPENGL">
+</p>
+
+> [이미지 출처 - semanticscholar - Mobile Phone 3D Games with OpenGL ES 2.0](https://www.semanticscholar.org/paper/Mobile-Phone-3D-Games-with-OpenGL-ES-2.0/a386920fa50818516b0d089254291076c4a8054b/figure/8)
+
+하지만 three.js는 비교적 단순한 과정을 거쳐 도형과 Scene들을 렌더링할 수 있다.<br/>
+
+ <p align="center">
+  <img src="https://velog.velcdn.com/images%2Fjeon-yj%2Fpost%2F8735a383-70a7-4cb9-bd15-9b3c05eccc64%2F1_Bkk14XZa94WTue7F7DrhCA.png"  width="50%" alt="threegraph">
+</p>
+threejs는 OPENGL ES를 web용으로 만든 WebGL Renderer를 renderer로 사용한다.<br/>
+mesh와 light 같은 개체들을 담은 Scene을 렌더링해주며 우리가 보는 화면을 Camera를 통해 전환하는 등의 구조이다.<br/>
+이제 이 각 구조가 어떤 특징을 가지고 어떤 역할을 하는지 알아보자.
 <br/>
 <br/>
 
@@ -135,6 +156,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 ```
 
+생성자를 통해 WebGLRenderer를 할당했을 때, 매개변수로 렌더링을 할 요소(canvas)를 지정할 수 있다.
 `Renderer`는 인스턴스 생성에 이어 사이즈를 설정해 주어야 한다.<br/>
 보통 우리가 사용하는 앱의 크기에 맞추기 위해, `browser window`의 너비와 높이를 채워 설정한다.<br/>
 화면 크기는 유지한채로 화질만 낮추려면, `setSize`의 세번째 인자로 false를 전달하면 절반의 해상도로 출력된다.
@@ -227,7 +249,7 @@ mesh 속성은 기하와 여기에 적용되는 material을 지니는 객체가 
   <img src="./Images/image-1.png" alt="mesh">
 </p>
 
-> 점과 점이 이어져 면과 다각형(Polygon)을 이루고, 이 다각형이 이어져 망(Mesh)을 이룬다. <br/>
+> 점과 점이 이어져 면과 다각형(Polygon)을 이루고, 이 다각형이 이어져 망(Mesh)을 이룬다. 정점(vertex)와 면(Face)을 합친 것을 Gemotry - 도형이라고 부른다. <br/>
 > 그림 출처 - 위키백과 (Polygon, Mesh)
 
 <br/>
