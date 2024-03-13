@@ -1,5 +1,16 @@
 # threejs의 Light와 Shadow
 
+목차
+
+- Light
+  - [AmbientLight](#ambientlight)
+  - [DirectionalLight](#directionallight)
+  - [HemisphereLight](#hemispherelight)
+  - [LightProbe](#lightprobe)
+  - [PointLight](#pointlight)
+  - [RectAreaLight](#rectarealight)
+  - [SpotLight](#spotlight)
+
 ## Light
 
 Light들 구현을 위한 추상 기본 클래스.<br/>
@@ -96,7 +107,7 @@ scene.add(light);
 
 전달되는 인자는 색상 헥스 코드인데, 각각 `하늘 조명`과 `지표면 조명`이다. <br/>기본값은 oxffffff으로 백색이며, 세번째 인자는 `빛의 강도`이다.
 
-## LigthProbe
+## LightProbe
 
 LightProbe는 3D Scene에 조명을 추가하는 또다른 방법이다.<br/>
 다른 광원 객체와 달리, light probe는 빛을 방출하지 않는다.<br/>
@@ -104,7 +115,7 @@ LightProbe는 3D Scene에 조명을 추가하는 또다른 방법이다.<br/>
 렌더링 과정 중에, 3D 개체와 충돌하는 빛은 이 light probe의 데이터를 통해 계산된다.<br/>
 이를 통해 실제 조명에 대응하는 증강 현실 컨텐츠를 제작할 수 있다.<br/>
 
-## Point Light
+## PointLight
 
 한 지점에서 모든 방향으로 방출되는 빛이다.<br/>
 `DirectionalLight`와 비슷하지만, `Point Light`가 사용자가 직접 방향을 계산하고 적용할 수 있다는 점에서 차이를 가진다.
