@@ -5,7 +5,7 @@ threejs를 2D, 3D 공간에서 효율적으로 사용하기 위해서는 수학�
 
 ### 목차
 
-1.[Box2]() 2.[Box3]() 3.[Color]() 4.[Cylindrical]() 5.[Euler]() 6.[Frustum]() 7.[Interpolant]() 8.[Line3]() 9.[MathUtils]() 10.[Matrix3]() 11.[Matrix4]() 12.[Plane]() 13.[Quaternion]() 14.[Ray]() 15.[Sphere]() 16.[SphericalHarmonics3]() 17.[Triangle]() 18.[Vector2]() 19.[Vector3]() 20.[Vector4]()
+1.[Box2]() 2.[Box3]() 3.[Cylindrical]() 4.[Euler]() 6.[Frustum]() 7.[Interpolant]() 8.[Line3]() 9.[MathUtils]() 10.[Matrix3]() 11.[Matrix4]() 12.[Plane]() 13.[Quaternion]() 14.[Ray]() 15.[Sphere]() 16.[SphericalHarmonics3]() 17.[Triangle]() 18.[Vector2]() 19.[Vector3]() 20.[Vector4]()
 
 ## Box2
 
@@ -36,3 +36,42 @@ box.union ( box : Box2 ) : this // 파라미터로 전달된 박스를 해당 �
 ```
 
 [메서드 더보기](https://threejs.org/docs/#api/en/math/Box2)<br/>
+
+## Box3
+
+3D 공간에서 `Axis-Aligned Bounding Box`를 나타낸다.
+
+```javascript
+const box = new THREE.Box3();
+
+const mesh = new THREE.Mesh(
+  new THREE.SphereGeometry(),
+  new THREE.MeshBasicMaterial()
+);
+```
+
+활용할 수 있는 메서드는 Box2와 많이 일치하나, 교차 체크 메서드가 추가된다.<br/>
+
+```js
+box..intersectsPlane ( plane : Plane ) : Boolean // 평면과 교차하는지
+box.intersectsSphere ( sphere : Sphere ) : Boolean // 구와 교차하는지
+box.intersectsTriangle ( triangle : Triangle ) : Boolean // 삼각뿔과 교차하는지
+```
+
+## Cylindrical
+
+ <p align="center">
+  <img src="./Images/Cylindrical Coordinate.png"  width="70%" alt="OPENGL">
+</p>
+
+> [자료 출처 - Math Insight \_ Applet: Cylindrical coordinates](https://mathinsight.org/applet/cylindrical_coordinates)
+
+Three.js에서 `Cylindrical`은 원기둥 좌표계를 나타내는 클래스를 의미한다.<br/>
+이 좌표계는 3D 공간에서 원기둥 형태의 좌표를 사용하여 벡터를 나타낸다.<br/>
+
+```js
+new Cylindrical( radius : Float, theta : Float, y : Float )
+// radius: 원기둥의 반지름. 원기둥의 중심에서 벡터가 위치한 평면까지의 거리이다.
+// theta: 원기둥의 중심 축(axis)을 따라 벡터가 위치한 각도
+// y: 벡터의 높이(y축 값)
+```
