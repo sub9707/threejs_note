@@ -15,6 +15,7 @@
 
 [외부] <a href="./threejs_Camera.md">ThreeJS 핵심 요소 1. Camera </a><br/>
 [외부] <a href="./threejs_Light n Shadow.md">ThreeJS 핵심 요소 2. Light & Shadow </a><br/>
+[외부] <a href="./ThreeJS_Math.md">ThreeJS 수학적 개념</a><br/>
 [외부] <a href="./ThreeJS_on_ReactJS.md">ReactJS에서 ThreeJS 구현하기 </a><br/>
 [외부] <a href="./ThreeJS_Fiber.md">threeJS 라이브러리 Three/fiber </a><br/>
 [외부] <a href="./ThreeJS_Drei.md">threeJS 라이브러리 Three/Drei </a><br/>
