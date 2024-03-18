@@ -191,3 +191,37 @@ const spotLight = new THREE.SpotLight(
 ```
 
 SpotLight에 매개변수로 전달되는 값들을 코드에 포함했다.<br />
+
+## Lights and Shadow
+
+### LightShadow
+
+shadow 클래스들을 위한 기본 클래스를 제공한다.
+생성자는 아래와 같으나 마찬가지로 직접 호출용이 아닌, 다른 light shadow들에 의해 기본 클래스로써 사용된다.
+
+```js
+const LS = new LightShadow(camera:Camera)
+```
+
+### PointLightShadow, DirectionalLightShadow, SpotLightShadow
+
+`PointLights`, `DirectionalLightShadow`, `SpotLightShadow`의 그림자 맵을 생성하고 관리하는 등 그림자 계산을 위해 내부적으로 사용된다.<br />
+다음과 같은 속성 설정으로 세팅할 수 있다.
+
+```js
+// renderer에서 shadow를 설정
+const renderer = new THREE.WebGLRenderer();
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+// 해당하는 Light를 생성하고 shadow를 설정할 수 있다.
+const light = new THREE.PointLight(0xffffff, 1, 100);
+light.position.set(0, 10, 4);
+light.castShadow = true; // default false
+scene.add(light);
+
+light.shadow.mapSize.width = 512; // default
+light.shadow.mapSize.height = 512; // default
+light.shadow.camera.near = 0.5; // default
+light.shadow.camera.far = 500; // default
+```
