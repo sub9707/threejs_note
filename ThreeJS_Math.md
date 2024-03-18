@@ -75,3 +75,27 @@ new Cylindrical( radius : Float, theta : Float, y : Float )
 // theta: 원기둥의 중심 축(axis)을 따라 벡터가 위치한 각도
 // y: 벡터의 높이(y축 값)
 ```
+
+## Euler
+
+ <p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Eulerangles.svg/250px-Eulerangles.svg.png"  width="50%" alt="OPENGL">
+</p>
+
+오일러 각을 나타내는 클래스이다.<br/><br/>
+`오일러 각`은 3차원 공간에서 물체의 회전을 나타내는 방법 중 하나이다. <br/>
+여기에선 물체의 회전을 세 축 주위 각도로써 설명한다.<br/>
+위 그림에선 α, β, γ가 주위 각도에 해당한다.<br/>
+오일러 각의 범위는 α와 γ의 경우 이상적인 상황에서 `2π 라디안`까지이며, β의 경우 `-π/2에서 π/2까지`가 된다.<br/>
+β 범위가 제한적인 것을 짐벌 락(영어: gimbal lock)이라 하는데, 이는 앞서 회전한 두 축의 영향으로 세 번째 회전의 가동 범위가 줄어들기 때문이다.<br/>
+
+> [그림 자료 및 오일러 각 설명 - 위키피디아 \_ 오일러 각](https://ko.wikipedia.org/wiki/%EC%98%A4%EC%9D%BC%EB%9F%AC_%EA%B0%81)
+
+```js
+const a = new THREE.Euler(0, 1, 1.57, "XYZ");
+const b = new THREE.Vector3(1, 0, 1);
+b.applyEuler(a);
+```
+
+네번째 인자로 `order`가 전달되는데, 회전이 적용되는 순서를 나타내는 문자열이다.<br/>
+문자열의 순서가 달라진다면 회전 순서가 달라지게된다.<br/>
