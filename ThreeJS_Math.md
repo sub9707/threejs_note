@@ -58,10 +58,10 @@ box.intersectsSphere ( sphere : Sphere ) : Boolean // 구와 교차하는지
 box.intersectsTriangle ( triangle : Triangle ) : Boolean // 삼각뿔과 교차하는지
 ```
 
-## Cylindrical
+## Cylindrical (원기둥 좌표계)
 
  <p align="center">
-  <img src="./Images/Cylindrical Coordinate.png"  width="70%" alt="OPENGL">
+  <img src="./Images/Cylindrical Coordinate.png"  width="50%" alt="OPENGL">
 </p>
 
 > [자료 출처 - Math Insight \_ Applet: Cylindrical coordinates](https://mathinsight.org/applet/cylindrical_coordinates)
@@ -76,10 +76,10 @@ new Cylindrical( radius : Float, theta : Float, y : Float )
 // y: 벡터의 높이(y축 값)
 ```
 
-## Euler
+## Euler (오일러 각)
 
  <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Eulerangles.svg/250px-Eulerangles.svg.png"  width="50%" alt="OPENGL">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Eulerangles.svg/250px-Eulerangles.svg.png"  width="30%" alt="OPENGL">
 </p>
 
 오일러 각을 나타내는 클래스이다.<br/><br/>
@@ -99,3 +99,28 @@ b.applyEuler(a);
 
 네번째 인자로 `order`가 전달되는데, 회전이 적용되는 순서를 나타내는 문자열이다.<br/>
 문자열의 순서가 달라진다면 회전 순서가 달라지게된다.<br/>
+
+## Frustum (절두체)
+
+ <p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Usech_kvadrat_piramid.png/110px-Usech_kvadrat_piramid.png"  width="30%" alt="OPENGL">
+</p>
+
+> [그림 자료 - 위키피디아 \_ 절두체](https://ko.wikipedia.org/wiki%EC%A0%88%EB%91%90%EC%B2%B4)
+
+`Frustum`은 입체 개체를 절단하여 상부와 바닥이 평행한 절두체(머리가 잘린 입체형태)를 의미한다.
+
+ <p align="center">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr2Z18lkjHKYBt6PCzGszXek60_ysYOUs2NS5En8mAJC1TlnaneuRnzh_E8EkjLBsr_FU&usqp=CAU"  width="30%" alt="OPENGL">
+</p>
+
+threejs에서는 위 사진과 같이 주로 카메라 시야 안에 무엇이 있는지 결정할 때 사용한다.<br/>
+또한 카메라의 `원근 투영(perspective projection)` 또는 `직교 투영(orthographic projection)`에 따라 다르게 정의된다.<br/>
+
+`Frustum`은 일반적으로 위 사진에서 보이듯 6개의 면으로 구성된다.<br/>
+각 면은 Array 형식으로 나열되며, 시야를 제한하고, 렌더링되는 객체가 카메라 시야 내에 있는지 확인하는 데 사용할 수 있다.<br/>
+가령, 객체가 Frustum 밖에 있는 경우, 해당 객체를 렌더링하지 않고 성능을 최적화하는 방식을 적용할 수 있다.
+
+```js
+new Frustum(p0 : Plane, p1 : Plane, p2 : Plane, p3 : Plane, p4 : Plane, p5 : Plane)
+```
