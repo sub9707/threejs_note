@@ -124,3 +124,56 @@ threejs에서는 위 사진과 같이 주로 카메라 시야 안에 무엇이 �
 ```js
 new Frustum(p0 : Plane, p1 : Plane, p2 : Plane, p3 : Plane, p4 : Plane, p5 : Plane)
 ```
+
+## MathUtils (수학식)
+
+threejs에서는 수학 연산을 지원하는 메서드가 제공된다.<br/>
+
+### .clamp ( value : Float, min : Float, max : Float ) : Float
+
+value를 min과 max 사이값으로 고정함
+
+### .degToRad ( degrees : Float ) : Float
+
+### .radToDeg ( radians : Float ) : Float
+
+degree(각도)값을 radian으로 변환, 또는 radian을 degree로 변환한다.
+
+### .euclideanModulo ( n : Integer, m : Integer ) : Integer
+
+유클리드 나머지 연산으로, 두 정수를 나눈 후 나머지를 반환하는 일반적인 계산식과 달리, 음수 결과에 대해 양수로써 일관된 결과를 반환하는 나머지 연산이다.<br/>
+
+```
+( ( n % m ) + m ) % m
+```
+
+### .isPowerOfTwo ( n : Number ) : Boolean
+
+2의 거듭제곱 형태인지 판단하는 용도이다.
+
+### .lerp ( x : Float, y : Float, t : Float ) : Float
+
+### .inverseLerp ( x : Float, y : Float, value : Float ) : Float,
+
+이 두 메서드를 이해하기 위해서는 `lerp`를 알아야한다.<br/>
+`lerp`는 `선형보간법(Linear Interpolator)`의 약자로,<br/>
+두 점 x, y 사이의 값을 구하기 위해 x-y를 연결한 직선을 만들어 사잇값을 계산하는 방법이다.<br/>
+이 방법을 활용해 부드러운 움직임을 구현하는데 사용한다.<br/>
+lerp와 inverseLerp의 차이점은 Lerp는 시간 t가 주어졌을 때, 두 간격 사이의 값을 반환하지만 InverseLerp는 두 사이 간격과 사잇값이 주어졌을 때 시간 t를 반환한다는 점에서 다르다.
+
+### .damp ( x : Float, y : Float, lambda : Float, dt : Float ) : Float
+
+damp는 감쇠라는 의미로, x에서 y로 부드럽게 보간하는 역할을 한다.
+이를 통해 부드럽고 자연스러운 운동을 구현할 수 있다.
+
+`x`는 현재 값, `y`는 목표값, `lambda`는 감쇠 계수로 값이 클수록 움직임이 급격해지고, 값이 작을수록 움직임이 점진적이다. <br/>`dt`는 시간 간격을 나타내며 한 프레임에서 다음 프레임까지의 경과 시간을 나타낸다.<br/>
+
+### .pingpong ( x : Float, length : Float ) : Float
+
+주어진 값 x를 0부터 length까지 왕복하는 값으로 변환한다.<br/>
+즉, x가 0부터 length까지 증가하다가 length에 도달하면 다시 0으로 돌아가며 반복되는 형식이다.<br/>
+주로 애니메이션 또는 그래픽 처리에서 주기적인 동작을 만들 때 유용하다.<br/>
+
+### .randInt, randFloat, randFloatSpread
+
+랜덤한 정수, 소수, 0기준 절대값 범위 내 수를 반환한다.
