@@ -3,9 +3,6 @@
 threejs를 2D, 3D 공간에서 효율적으로 사용하기 위해서는 수학적 개념과 함수가 필요하다.<br/>
 어떤 개념들이 있는지 살펴보고 활용방법에 대해 알아보자.<br/>
 
-### 목차
-
-1.[Box2]() 2.[Box3]() 3.[Cylindrical]() 4.[Euler]() 6.[Frustum]() 7.[Interpolant]() 8.[Line3]() 9.[MathUtils]() 10.[Matrix3]() 11.[Matrix4]() 12.[Plane]() 13.[Quaternion]() 14.[Ray]() 15.[Sphere]() 16.[SphericalHarmonics3]() 17.[Triangle]() 18.[Vector2]() 19.[Vector3]() 20.[Vector4]()
 
 ## Box2
 
